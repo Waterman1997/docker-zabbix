@@ -1,4 +1,4 @@
-#### 🔨基于zabbix-docker alpine镜像的Dockerfile做的一些更改
+### 🔨基于zabbix-docker alpine镜像的Dockerfile做的一些更改
 
 - 修改`PHP_TZ`默认时区为`Asia/Shanghai`(不然时间相差8小时)
 
@@ -6,7 +6,7 @@
 
 - 添加`Python3`的支持(人生苦短，容器内用Python3执行脚本)
 
-  ##### 运行方法
+  #### 运行方法
   
   1. **build**
   
