@@ -173,9 +173,9 @@ RUN set -eux && \
     ./locale/make_mo.sh && \
     cd /tmp/ && \
     rm -rf /tmp/zabbix-${ZBX_VERSION}/ && \
-    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    echo "Asia/Shanghai" > /etc/timezone
-    apk del tzdata
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
+    apk del tzdata && \
     apk del ${APK_FLAGS_COMMON} --purge --no-network \
             build-dependencies && \
     rm -rf /var/cache/apk/*
