@@ -78,6 +78,7 @@ RUN set -eux && \
             php7-xmlreader \
             php7-xmlwriter \
             python3 \
+            tzdata \
             supervisor \
             pcre \
             unixodbc && \
@@ -172,6 +173,9 @@ RUN set -eux && \
     ./locale/make_mo.sh && \
     cd /tmp/ && \
     rm -rf /tmp/zabbix-${ZBX_VERSION}/ && \
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    echo "Asia/Shanghai" > /etc/timezone
+    apk del tzdata
     apk del ${APK_FLAGS_COMMON} --purge --no-network \
             build-dependencies && \
     rm -rf /var/cache/apk/*
