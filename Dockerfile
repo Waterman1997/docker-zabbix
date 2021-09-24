@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.14
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -30,6 +30,7 @@ RUN set -eux && \
         zabbix && \
     adduser zabbix dialout && \
     mkdir -p /etc/zabbix && \
+    mkdir -p /etc/nginx/conf.d && \
     mkdir -p /var/lib/zabbix && \
     mkdir -p /usr/lib/zabbix/alertscripts && \
     mkdir -p /var/lib/zabbix/enc && \
@@ -42,6 +43,7 @@ RUN set -eux && \
     mkdir -p /var/lib/zabbix/ssl/certs && \
     mkdir -p /var/lib/zabbix/ssl/keys && \
     mkdir -p /var/lib/zabbix/ssl/ssl_ca && \
+    sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories && \
     chown --quiet -R zabbix:root /var/lib/zabbix && \
     mkdir -p /usr/share/doc/zabbix-${ZBX_TYPE}-${ZBX_DB_TYPE}/ && \
     apk update && \
@@ -84,8 +86,8 @@ RUN set -eux && \
             unixodbc && \
     rm -rf /var/cache/apk/*
 
-ARG MAJOR_VERSION=5.4
-ARG ZBX_VERSION=${MAJOR_VERSION}.0
+ARG MAJOR_VERSION=6.0
+ARG ZBX_VERSION=${MAJOR_VERSION}.0alpha3
 ARG ZBX_SOURCES=https://git.zabbix.com/scm/zbx/zabbix.git
 ENV ZBX_VERSION=${ZBX_VERSION} ZBX_SOURCES=${ZBX_SOURCES}
 
